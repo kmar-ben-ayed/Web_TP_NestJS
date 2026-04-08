@@ -21,9 +21,6 @@ async function bootstrap() {
     .setTitle('CV Manager API')
     .setDescription('REST API for managing CVs, users, and skills')
     .setVersion('1.0')
-    .addTag('cv')
-    .addTag('user')
-    .addTag('skill')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
