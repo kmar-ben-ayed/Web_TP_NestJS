@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable, Index } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
 import { Skill } from '../../skill/entities/skill.entity';
 
@@ -17,9 +17,11 @@ export class Cv {
   @Column()
   age: number;
 
-  @Column()
+  @Index({ unique: true })
+  @Column({ unique: true })
   cin: string;
 
+  @Index()
   @Column()
   job: string;
 
