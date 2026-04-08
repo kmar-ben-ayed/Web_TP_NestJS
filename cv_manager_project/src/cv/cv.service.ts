@@ -3,6 +3,8 @@ import { CreateCvDto } from './dto/create-cv.dto';
 import { UpdateCvDto } from './dto/update-cv.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Cv } from './entities/cv.entity';
+import { User } from '../user/entities/user.entity';
+import { Skill } from '../skill/entities/skill.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -15,6 +17,11 @@ export class CvService {
 
   create(createCvDto: CreateCvDto) {
     return this.cvRepository.save(createCvDto);
+  }
+
+  createWithRelations(data: CreateCvDto & { user: User; skills: Skill[] }) {
+    const cv = this.cvRepository.create(data);
+    return this.cvRepository.save(cv);
   }
 
   findAll() {
