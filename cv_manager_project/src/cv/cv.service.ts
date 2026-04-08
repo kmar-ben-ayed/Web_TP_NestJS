@@ -22,7 +22,7 @@ export class CvService {
   }
 
   findOne(id: number) {
-    return this.cvRepository.findOne({where : {id}});
+    return this.cvRepository.findOne({ where: { id }, relations: ['user', 'skills'] });
   }
 
   update(id: number, updateCvDto: UpdateCvDto) {

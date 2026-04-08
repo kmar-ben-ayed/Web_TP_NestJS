@@ -22,7 +22,7 @@ export class UserService {
   }
 
   findOne(id: number) {
-    return this.userRepository.findOne({where : {id}});
+    return this.userRepository.findOne({ where: { id }, relations: ['cvs'] });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
