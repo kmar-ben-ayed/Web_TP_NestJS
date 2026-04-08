@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, Index } from 'typeorm';
 
 @Entity()
 export class Skill {
@@ -6,6 +6,7 @@ export class Skill {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Index({ unique: true })
+  @Column({ unique: true })
   designation: string;
 }
