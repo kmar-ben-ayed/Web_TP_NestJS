@@ -21,7 +21,6 @@ export class Cv {
   @Column({ unique: true })
   cin: string;
 
-  @Index()
   @Column()
   job: string;
 
