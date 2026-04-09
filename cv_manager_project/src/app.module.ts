@@ -31,8 +31,6 @@ import { AuthModule } from './auth/auth.module';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): MiddlewareConsumer | void {
-    consumer
-      .apply(AuthMiddleware)
-      .forRoutes(CvController);
+    consumer.apply(AuthMiddleware).forRoutes(CvController);
   }
 }

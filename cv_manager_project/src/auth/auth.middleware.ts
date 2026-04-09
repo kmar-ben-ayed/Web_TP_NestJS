@@ -10,15 +10,19 @@ export class AuthMiddleware implements NestMiddleware {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
-  ) {}
+  ) { }
 
   async use(req: Request, res: Response, next: NextFunction) {
-    const token = req.headers['auth-user'] as string;
+    const authHeader = req.headers.authorization;
 
-    if (!token) throw new UnauthorizedException('Token not found');
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      throw new UnauthorizedException('Authorization header missing or invalid');
+    }
+
+    const token = authHeader.split(' ')[1];
 
     try {
-      const decoded = verify(token, process.env.SECRET as string) as unknown as { userId: number };
+      const decoded = verify(token, process.env.SECRET as string || 'defaultSecret') as unknown as { userId: number };
 
       if (!decoded.userId) throw new UnauthorizedException('Invalid token');
 

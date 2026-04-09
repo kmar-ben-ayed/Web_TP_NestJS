@@ -18,7 +18,10 @@ export class CreateCvDto {
   @Max(65)
   age: number;
 
-  @ApiProperty({ example: '12345678', description: 'National ID (CIN) — must be unique' })
+  @ApiProperty({
+    example: '12345678',
+    description: 'National ID (CIN) — must be unique',
+  })
   @IsString()
   @IsNotEmpty()
   cin: string;
@@ -28,7 +31,10 @@ export class CreateCvDto {
   @IsNotEmpty()
   job: string;
 
-  @ApiProperty({ example: 'cv_johndoe.pdf', description: 'Path to the CV file' })
+  @ApiProperty({
+    example: 'cv_johndoe.pdf',
+    description: 'Path to the CV file',
+  })
   @IsString()
   @IsNotEmpty()
   path: string;

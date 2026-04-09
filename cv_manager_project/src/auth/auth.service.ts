@@ -10,7 +10,7 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private jwtService: JwtService
-  ) {}
+  ) { }
 
   async register(userData: CreateUserDto) {
     return this.userService.create(userData);
@@ -21,13 +21,13 @@ export class AuthService {
     const user = await this.userService.findByEmail(email);
 
     if (user && await bcrypt.compare(password, user.password)) {
-      const payload = { 
-        userId: user.id, 
+      const payload = {
+        userId: user.id,
         username: user.username,
         email: user.email,
         role: user.role
       };
-      
+
       return {
         access_token: this.jwtService.sign(payload),
         user: {

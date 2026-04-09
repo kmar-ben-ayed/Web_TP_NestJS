@@ -10,8 +10,7 @@ export class SkillService {
   constructor(
     @InjectRepository(Skill)
     private skillRepository: Repository<Skill>,
-  ){}
-
+  ) {}
 
   create(createSkillDto: CreateSkillDto) {
     return this.skillRepository.save(createSkillDto);
@@ -22,11 +21,11 @@ export class SkillService {
   }
 
   findOne(id: number) {
-    return this.skillRepository.findOne({where : {id}});
+    return this.skillRepository.findOne({ where: { id } });
   }
 
   update(id: number, updateSkillDto: UpdateSkillDto) {
-    return this.skillRepository.update(id,updateSkillDto);
+    return this.skillRepository.update(id, updateSkillDto);
   }
 
   remove(id: number) {
